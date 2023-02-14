@@ -1,0 +1,8 @@
+<h2>My To-dos</h2>
+
+<div>
+  <input [(ngModel)]="newToDo" />
+  <button (click)="addToDo()" [disabled]="!newToDo">Add</button>
+</div>
+
+<app-to-do *ngFor="let todo of todos | async" [todo]="todo"></app-to-do>

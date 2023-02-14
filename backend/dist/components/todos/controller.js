@@ -8,6 +8,8 @@ const datasource_1 = __importDefault(require("../../datasource"));
 // CREATE todo item
 const newTodo = async (req, res) => {
     try {
+        // change when auth
+        req.body.user_id = 1;
         const todoData = await datasource_1.default.todo.create({ data: req.body });
         res.status(201).json({
             ok: true,
@@ -25,7 +27,7 @@ exports.newTodo = newTodo;
 const findAllTodos = async (_req, res) => {
     try {
         const all_todos = await datasource_1.default.todo.findMany();
-        res.status(200).json({ ok: true, body: all_todos });
+        res.status(200).json(all_todos);
     }
     catch (error) {
         res.status(500).json({ ok: false, message: error });
@@ -57,10 +59,10 @@ const updateTodo = async (req, res) => {
             where: { id },
             data: req.body,
         });
-        res.json({ ok: true, body: todo, message: "To-do item updated successfully." });
+        res.json(todo);
     }
     catch (error) {
-        res.status(500).json({ ok: false, body: error });
+        res.status(500).json(error);
     }
 };
 exports.updateTodo = updateTodo;

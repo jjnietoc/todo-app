@@ -1,0 +1,6 @@
+<div>
+    <h2>{{ todo?.name }}</h2>
+    <h1 *ngIf="todo?.completed===true">terminado</h1>
+    <button (click)="markAsDone()">Done</button>
+</div>
+

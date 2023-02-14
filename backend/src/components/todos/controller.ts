@@ -4,6 +4,8 @@ import prisma from "../../datasource";
 // CREATE todo item
 export const newTodo = async (req: Request, res: Response): Promise<void> => {
     try {
+        // change when auth
+        req.body.user_id = 1
         const todoData = await prisma.todo.create({ data: req.body });
         res.status(201).json({
             ok: true,
@@ -20,7 +22,7 @@ export const newTodo = async (req: Request, res: Response): Promise<void> => {
 export const findAllTodos = async (_req: Request, res: Response): Promise<void> => {
     try {
         const all_todos = await prisma.todo.findMany();
-        res.status(200).json({ ok: true, body: all_todos });
+        res.status(200).json(all_todos);
     } catch (error) {
         res.status(500).json({ ok: false, message: error });
     }
@@ -50,9 +52,9 @@ export const updateTodo = async (req: Request, res: Response): Promise<void> => 
             where: { id },
             data: req.body, 
         });
-        res.json({ ok: true, body: todo, message: "To-do item updated successfully." });
+        res.json(todo);
     } catch (error) {
-        res.status(500).json({ ok: false, body: error });
+        res.status(500).json(error);
     }
 };
 
