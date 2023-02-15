@@ -1,0 +1,11 @@
+<h2>Signup</h2>
+
+<div>
+    <input [(ngModel)]="name" placeholder="Name"/>
+    <input [(ngModel)]="email" placeholder="Email"/>
+    <input [(ngModel)]="password" placeholder="Password" type="password"/>
+    <label>
+        <input [(ngModel)]="isAdmin" type="checkbox"/> Administrator
+    </label>
+    <button (click)="signup()">Signup</button>
+</div>

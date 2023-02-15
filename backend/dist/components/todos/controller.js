@@ -8,9 +8,11 @@ const datasource_1 = __importDefault(require("../../datasource"));
 // CREATE todo item
 const newTodo = async (req, res) => {
     try {
-        // change when auth
-        req.body.user_id = 1;
-        const todoData = await datasource_1.default.todo.create({ data: req.body });
+        const toDo = {
+            user_id: res.locals.user_id,
+            name: req.body.name
+        };
+        const todoData = await datasource_1.default.todo.create({ data: toDo });
         res.status(201).json({
             ok: true,
             body: todoData,
@@ -24,9 +26,13 @@ const newTodo = async (req, res) => {
 };
 exports.newTodo = newTodo;
 // GET all todo items
-const findAllTodos = async (_req, res) => {
+const findAllTodos = async (req, res) => {
     try {
-        const all_todos = await datasource_1.default.todo.findMany();
+        const all_todos = await datasource_1.default.todo.findMany({
+            where: {
+                user_id: res.locals.user_id
+            }
+        });
         res.status(200).json(all_todos);
     }
     catch (error) {
@@ -41,7 +47,7 @@ const findTodoById = async (req, res) => {
         const todo = await datasource_1.default.todo.findUnique({
             where: {
                 id: todo_id,
-            }
+            },
         });
         res.status(200).json({ ok: true, body: todo?.name });
     }
@@ -73,7 +79,11 @@ const deleteTodo = async (req, res) => {
         await datasource_1.default.todo.delete({
             where: { id },
         });
-        res.status(204).json({ ok: true, body: "", message: "To-do item deleted successfully." });
+        res.status(204).json({
+            ok: true,
+            body: "",
+            message: "To-do item deleted successfully.",
+        });
     }
     catch (error) {
         res.status(500).json({ ok: false, body: error });

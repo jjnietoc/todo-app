@@ -1,9 +1,17 @@
 import { Router } from "express";
-import { findAllUsers, getOneUser, signup, login, updateUser, removeUser } from "./controller";
+import {
+  findAllUsers,
+  getOneUser,
+  signup,
+  login,
+  updateUser,
+  removeUser,
+} from "./controller";
+import { verifyAuthentication, isAdministrator } from "../authenticate";
 
 const userRouter: Router = Router();
 
-userRouter.get("/", findAllUsers);
+userRouter.get("/", verifyAuthentication, isAdministrator, findAllUsers);
 userRouter.get("/:idUser", getOneUser);
 userRouter.put("/:idUser", updateUser);
 userRouter.post("/signup", signup);

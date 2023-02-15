@@ -7,22 +7,16 @@ exports.removeUser = exports.updateUser = exports.login = exports.signup = expor
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const datasource_1 = __importDefault(require("../../datasource"));
-const authenticate_1 = require("../authenticate");
 const secret_key = process.env.SECRET_KEY || "Secret key";
 // GET all users
 const findAllUsers = async (req, res) => {
     try {
-        if ((0, authenticate_1.verifyAuthentication)(req, secret_key)) {
-            const users = await datasource_1.default.user.findMany({
-                include: {
-                    todos: true,
-                }
-            });
-            res.status(200).json({ ok: true, data: users });
-        }
-        else {
-            res.status(400).json({ ok: false, message: "Authentication failed." });
-        }
+        const users = await datasource_1.default.user.findMany({
+            include: {
+                todos: true,
+            },
+        });
+        res.status(200).json({ ok: true, data: users });
     }
     catch (error) {
         res.status(500).json({ ok: false, message: error });
@@ -39,7 +33,7 @@ const getOneUser = async (req, res) => {
             },
             include: {
                 todos: true,
-            }
+            },
         });
         res.json({ ok: true, body: user });
     }
@@ -62,9 +56,12 @@ const signup = async (req, res) => {
         };
         const user = await datasource_1.default.user.create({ data: new_user });
         const token = jsonwebtoken_1.default.sign({ id: user.id, email: user.email }, secret_key, {
-            expiresIn: 86400
+            expiresIn: 86400,
         });
-        res.status(201).json({ ok: true, message: "User created successfully", data: user, token: token });
+        res.status(201).json({
+            user,
+            token,
+        });
     }
     catch (error) {
         console.log(error);
@@ -78,8 +75,8 @@ const login = async (req, res) => {
         const { email, password } = req.body;
         const user = await datasource_1.default.user.findUnique({
             where: {
-                email: email
-            }
+                email: email,
+            },
         });
         if (user == null) {
             res.status(400).json({ ok: false, message: "Incorrect email." });
@@ -87,10 +84,11 @@ const login = async (req, res) => {
         else {
             const is_valid = await bcrypt_1.default.compare(password, user.password);
             if (is_valid) {
-                const token = jsonwebtoken_1.default.sign({ id: user.id, email: user.email }, secret_key, {
-                    expiresIn: 86400
+                const token = jsonwebtoken_1.default.sign({ id: user.id, email: user.email, isAdmin: user.isAdmin }, secret_key, {
+                    expiresIn: 86400,
                 });
-                res.status(201).json({ ok: true, message: "Login succesful", data: user, token: token });
+                user.password = "";
+                res.status(201).json({ user, token });
             }
             else {
                 res.status(400).json({ ok: false, message: "Incorrect password." });
