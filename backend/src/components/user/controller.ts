@@ -56,11 +56,12 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       name: data.name,
       email: data.email,
       password: encrypted_password,
+      isAdmin: data.isAdmin,
       last_session: new Date(data.last_session),
     };
     const user = await prisma.user.create({ data: new_user });
 
-    const token = jwt.sign({ id: user.id, email: user.email }, secret_key, {
+    const token = jwt.sign({ id: user.id, email: user.email, isAdmin: user.isAdmin }, secret_key, {
       expiresIn: 86400,
     });
 

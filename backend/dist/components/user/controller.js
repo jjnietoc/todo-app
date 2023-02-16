@@ -52,10 +52,11 @@ const signup = async (req, res) => {
             name: data.name,
             email: data.email,
             password: encrypted_password,
+            isAdmin: data.isAdmin,
             last_session: new Date(data.last_session),
         };
         const user = await datasource_1.default.user.create({ data: new_user });
-        const token = jsonwebtoken_1.default.sign({ id: user.id, email: user.email }, secret_key, {
+        const token = jsonwebtoken_1.default.sign({ id: user.id, email: user.email, isAdmin: user.isAdmin }, secret_key, {
             expiresIn: 86400,
         });
         res.status(201).json({

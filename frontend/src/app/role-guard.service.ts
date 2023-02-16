@@ -11,7 +11,7 @@ export class RoleGuardService implements CanActivate{
   constructor(private _router: Router, private authService: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-      if(!this.authService.isAdmin) {
+      if(!this.authService.user?.isAdmin) {
         alert('Forbidden.')
         this._router.navigate(['/todos'])
         return false
