@@ -10,6 +10,8 @@ import { ToDoComponent } from "./to-do/to-do.component";
 import { ToDoListComponent } from "./to-do-list/to-do-list.component";
 import { AuthInterceptor } from "./auth.interceptor";
 import { SignupComponent } from './signup/signup.component';
+import { AdminViewComponent } from './admin-view/admin-view.component';
+import { RoleGuardService } from "./role-guard.service";
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { SignupComponent } from './signup/signup.component';
     ToDoComponent,
     ToDoListComponent,
     SignupComponent,
+    AdminViewComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   bootstrap: [AppComponent],
@@ -27,6 +30,7 @@ import { SignupComponent } from './signup/signup.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
     },
+    RoleGuardService
   ],
 })
 export class AppModule {}

@@ -13,7 +13,12 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
   login(): void {
     this.authService.login(this.email, this.password).subscribe((response) => {
-      this.router.navigate(['todos'])
+      if (this.authService.isAdmin === false) {
+        this.router.navigate(['todos'])
+      }
+      else {
+        this.router.navigate(['admin'])
+      }
     });
   }
 }

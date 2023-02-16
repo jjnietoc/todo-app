@@ -16,7 +16,7 @@ const findAllUsers = async (req, res) => {
                 todos: true,
             },
         });
-        res.status(200).json({ ok: true, data: users });
+        res.json(users);
     }
     catch (error) {
         res.status(500).json({ ok: false, message: error });
@@ -88,7 +88,8 @@ const login = async (req, res) => {
                     expiresIn: 86400,
                 });
                 user.password = "";
-                res.status(201).json({ user, token });
+                const isAdmin = user.isAdmin;
+                res.status(201).json({ user, token, isAdmin });
             }
             else {
                 res.status(400).json({ ok: false, message: "Incorrect password." });

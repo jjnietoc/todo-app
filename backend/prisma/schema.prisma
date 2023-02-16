@@ -13,7 +13,7 @@ datasource db {
 model User {
   id           Int       @id @default(autoincrement())
   email        String    @unique
-  name         String?
+  name         String?   @unique
   password     String
   last_session DateTime?
   isAdmin      Boolean   @default(false)
@@ -27,7 +27,7 @@ model Todo {
   user         User     @relation(fields: [user_id], references: [id])
   user_id      Int
   name         String
-  clicked      Boolean @default(false)
+  clicked      Boolean  @default(false)
   completed    Boolean  @default(false)
   created_at   DateTime @default(now())
   completed_at DateTime @updatedAt
