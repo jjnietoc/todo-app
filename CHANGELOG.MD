@@ -1,6 +1,8 @@
-## 0.1.0 (2023-02-16)
+## 0.2.0 (2023-02-16)
 
 ### Release Highlights
+**What's new?**
+* Added Material UI to all views.
 
 **Features**:
 * Sign up as normal user or administrator
