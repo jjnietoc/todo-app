@@ -1,7 +1,11 @@
-<div>
-    <h2>{{ todo?.name }}</h2>
-    <h1 *ngIf="todo?.completed===true">terminado</h1>
-    <button (click)="markAsDone()">Done</button>
-    <button>Translate</button>
-</div>
-
+<mat-card [class.todo-finished]="todo?.completed" class="todo-card">
+  <mat-card-header>
+    <mat-card-title>{{ todo?.name }}</mat-card-title>
+    <mat-card-subtitle *ngIf="todo?.completed">Finished</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <button *ngIf="!todo?.completed" class="todo-button" (click)="markAsDone()" mat-raised-button color="primary">Done</button>
+    <button *ngIf="!todo?.completed" class="todo-button" mat-raised-button color="secondary">Translate</button>
+  </mat-card-actions>
+</mat-card>
+<br>

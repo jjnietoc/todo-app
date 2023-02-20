@@ -1,11 +1,66 @@
-<h2>Signup</h2>
+<mat-card class="example-class">
+  <mat-card-header>
+    <mat-card-title>Sign up to start adding to-dos!</mat-card-title>
+  </mat-card-header>
+  <br />
+  <mat-card-content>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input
+          type="name"
+          name="name"
+          matInput
+          [(ngModel)]="name"
+          placeholder="Name"
+        />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          name="email"
+          matInput
+          [(ngModel)]="email"
+          placeholder="Ex. pat@example.com"
+        />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          name="password"
+          matInput
+          [(ngModel)]="password"
+          placeholder="Password"
+        />
+      </mat-form-field>
+      <mat-checkbox
+        [(ngModel)]="isAdmin"
+        name="isAdmin"
+        class="example-margin"
+        color="primary"
+        >Administrator</mat-checkbox
+      >
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="start">
+    <button
+      class="login-button"
+      (click)="signup()"
+      mat-raised-button
+      color="primary"
+    >
+      Sign up
+    </button>
+    <button
+    class="login-button"
+    routerLink="/login"
+    mat-raised-button
+    color="secondary"
+  >
+    Login
+  </button>
+  </mat-card-actions>
+</mat-card>
 
-<div>
-    <input [(ngModel)]="name" placeholder="Name"/>
-    <input [(ngModel)]="email" placeholder="Email"/>
-    <input [(ngModel)]="password" placeholder="Password" type="password"/>
-    <label>
-        <input [(ngModel)]="isAdmin" type="checkbox"/> Administrator
-    </label>
-    <button (click)="signup()">Signup</button>
-</div>

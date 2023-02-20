@@ -1,3 +1,10 @@
-<router-outlet></router-outlet>
+<mat-toolbar>
+    <span>To-do</span>
+    <span class="example-spacer"></span>
+    <button *ngIf="isLogedIn()" (click)="logout()" mat-raised-button>Logout</button>
+  </mat-toolbar>
 
-<button (click)="logout()">Logout</button>
+<div class="content">
+<router-outlet></router-outlet>
+</div>
+

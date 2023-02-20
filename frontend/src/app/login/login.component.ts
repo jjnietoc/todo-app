@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: "app-login",
@@ -21,4 +22,5 @@ export class LoginComponent {
       }
     });
   }
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 }
