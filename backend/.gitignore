@@ -21,3 +21,7 @@ package-lock.json
 /prisma/*.db
 /prisma/*.db-journal
 prisma/migrations
+
+#Google Cloud
+app.yaml
+.gcloudignore
