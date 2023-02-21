@@ -3,6 +3,7 @@ logs
 *.log
 npm-debug.log*
 
+
 node_modules/
 
 *.tsbuildinfo
@@ -15,13 +16,13 @@ node_modules/
 
 .cache/
 
-package-lock.json
-
 /prisma/db/*.db
 /prisma/*.db
 /prisma/*.db-journal
 prisma/migrations
+src/datasource/generated
 
 #Google Cloud
 app.yaml
 .gcloudignore
+

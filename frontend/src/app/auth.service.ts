@@ -16,7 +16,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<{ user: User; token: string }>(
-        "http://localhost:8001/api/users/login",
+        "/api/users/login",
         {
           email,
           password,
@@ -33,7 +33,7 @@ export class AuthService {
   signup(name: string, email: string, password: string, isAdmin: boolean) {
     return this.http
       .post<{ user: User; token: string }>(
-        "http://localhost:8001/api/users/signup",
+        "/api/users/signup",
         {
           name,
           email,
