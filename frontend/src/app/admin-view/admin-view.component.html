@@ -1,11 +1,11 @@
 <div>
   <h1>Users</h1>
-  <mat-accordion>
+  <mat-accordion *ngFor="let user of users | async">
     <mat-expansion-panel
       class="accordion"
       (opened)="panelOpenState = true"
       (closed)="panelOpenState = false"
-      *ngFor="let user of users | async"
+      *ngIf="user.isAdmin === false"
     >
       <mat-expansion-panel-header>
         <mat-panel-title>
