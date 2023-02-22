@@ -1,29 +1,24 @@
 .todo-card {
-    max-width: 550px;
-  }
+  max-width: 550px;
+}
 
-  .todo-button {
-    margin-left: 8px;
-  }
+.todo-button {
+  margin-left: 8px;
+}
 
-  .todo-finished {
-    background-color: rgb(164, 164, 164);
-  }
+.todo-finished {
+  background-color: rgb(164, 164, 164);
+}
 
-  .example-full-width {
-    width: 100%;
-  }
+.full-width {
+  width: 100%;
+}
 
-  .example-class {
-    max-width: 450px;
-  }
+.card-class {
+  max-width: 450px;
+}
 
-  .login-button {
-    margin-right: 10px;
-    position: relative;
-  }
-
-  .example-class-2 {
-    max-width: 450px;
-    margin-top: 10px; 
-  }
+.login-button {
+  margin-right: 10px;
+  position: relative;
+}

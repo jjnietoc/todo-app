@@ -16,9 +16,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import {MatCardModule} from '@angular/material/card';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCardModule } from "@angular/material/card";
+import { MatIconModule } from "@angular/material/icon";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatExpansionModule } from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatToolbarModule,
     MatCardModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatExpansionModule,
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -1,11 +1,11 @@
 .todo-card {
-    max-width: 550px;
-  }
+  max-width: 500px;
+}
 
-  .todo-button {
-    margin-left: 8px;
-  }
+.todo-button {
+  margin-left: 8px;
+}
 
-  .todo-finished {
-    background-color: rgb(164, 164, 164);
-  }
+.todo-finished {
+  background-color: rgb(164, 164, 164);
+}

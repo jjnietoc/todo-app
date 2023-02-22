@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { UserService } from '../user.service';
@@ -14,4 +14,5 @@ export class AdminViewComponent {
   ngOnInit(): void {
     this.users = this.userService.getUsers();
   }
+  panelOpenState = false; 
 }

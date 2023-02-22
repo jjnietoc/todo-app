@@ -1,7 +1,7 @@
-.example-form-field {
-    width: 200px;
-  }
+.todo-list-form {
+  width: 500px;
+}
 
-  .todo-button {
-    margin-left: 8px;
-  }
+.add-todo-button {
+  margin-left: 8px;
+}

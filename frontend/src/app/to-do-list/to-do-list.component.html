@@ -1,13 +1,13 @@
 <h2>My To-dos</h2>
 
-<mat-form-field class="example-form-field">
-  <mat-label>Clearable input</mat-label>
+<mat-form-field class="todo-list-form">
+  <mat-label>Add your to-do item</mat-label>
   <input matInput type="text" [(ngModel)]="newToDo">
   <button *ngIf="newToDo" matSuffix mat-icon-button aria-label="Clear" (click)="newToDo=''">
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
-<button class="todo-button" (click)="addToDo()" [disabled]="!newToDo" mat-raised-button color="primary">Add</button>
+<button class="add-todo-button" (click)="addToDo()" [disabled]="!newToDo" mat-raised-button color="primary">Add</button>
 <div *ngFor="let todo of todos | async">
   <app-to-do *ngIf="todo.completed" [todo]="todo" ></app-to-do>
 </div>
