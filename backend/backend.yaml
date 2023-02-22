@@ -3,4 +3,4 @@ runtime: nodejs14
 service: backend
 
 env_variables:
-  DATABASE_URL: "postgresql://postgres:macanudo1@35.225.47.8/todo?schema=public"
+  DATABASE_URL: "postgresql://postgres:macanudo1@35.225.47.8/todos?schema=public"
