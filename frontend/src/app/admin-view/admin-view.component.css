@@ -1,3 +1,4 @@
-.mat-mdc-form-field + .mat-mdc-form-field {
+.accordion {
     margin-left: 8px;
+    max-width: 700px;
   }
