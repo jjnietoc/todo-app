@@ -2,13 +2,18 @@ import type { Request, Response } from "express";
 import prisma from "../../datasource";
 import { verifyAuthentication } from "../authenticate";
 
+// Google Translation API
+const { TranslationServiceClient } = require("@google-cloud/translate");
+
+const translationClient = new TranslationServiceClient();
+
 // CREATE todo item
 export const newTodo = async (req: Request, res: Response): Promise<void> => {
   try {
     const toDo = {
       user_id: res.locals.user_id,
-      name: req.body.name
-    }
+      name: req.body.name,
+    };
     const todoData = await prisma.todo.create({ data: toDo });
     res.status(201).json({
       ok: true,
@@ -29,8 +34,8 @@ export const findAllTodos = async (
   try {
     const all_todos = await prisma.todo.findMany({
       where: {
-        user_id: res.locals.user_id
-      }
+        user_id: res.locals.user_id,
+      },
     });
     res.status(200).json(all_todos);
   } catch (error) {
@@ -91,5 +96,47 @@ export const deleteTodo = async (
     });
   } catch (error) {
     res.status(500).json({ ok: false, body: error });
+  }
+};
+
+// TRANSLATE todo by id
+export const translateToDo = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const todo_id = Number(req.params.idTodo);
+    const todo = await prisma.todo.findUnique({
+      where: {
+        id: todo_id,
+      },
+    });
+    const projectId = "spring-ember-377519";
+    const location = "global";
+    if (!todo) {
+      res.status(404).json("ToDo not found.");
+      return;
+    }
+    const text = todo.name;
+    // Construct request
+    const request = {
+      parent: `projects/${projectId}/locations/${location}`,
+      contents: [text],
+      mimeType: "text/plain", // mime types: text/plain, text/html
+      sourceLanguageCode: "en",
+      targetLanguageCode: "es",
+    };
+    // Run request
+    const [response] = await translationClient.translateText(request);
+    const translatedText = response.translations[0].translatedText;
+    todo.clicked = true;
+    todo.translated_text = translatedText;
+    await prisma.todo.update({
+      where: { id: todo.id },
+      data: todo,
+    });
+    res.json(todo);
+  } catch (error) {
+    res.status(404).json(error);
   }
 };

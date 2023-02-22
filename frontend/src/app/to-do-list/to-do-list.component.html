@@ -8,5 +8,10 @@
   </button>
 </mat-form-field>
 <button class="todo-button" (click)="addToDo()" [disabled]="!newToDo" mat-raised-button color="primary">Add</button>
+<div *ngFor="let todo of todos | async">
+  <app-to-do *ngIf="todo.completed" [todo]="todo" ></app-to-do>
+</div>
+<div *ngFor="let todo of todos | async">
+  <app-to-do *ngIf="!todo.completed" [todo]="todo" ></app-to-do>
+</div>
 
-<app-to-do *ngFor="let todo of todos | async" [todo]="todo" ></app-to-do>

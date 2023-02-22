@@ -18,5 +18,10 @@ export class ToDoComponent implements OnInit {
       .subscribe(todo => this.todo = todo);
     }
   }
-  
+  translate(): void {
+    if (this.todo) {
+      this.toDoService.translateToDo(this.todo.id)
+      .subscribe(todo => this.todo = todo);
+    }
+  }
 }

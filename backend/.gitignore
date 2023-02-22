@@ -26,3 +26,4 @@ src/datasource/generated
 app.yaml
 .gcloudignore
 
+dist/datasource/generated

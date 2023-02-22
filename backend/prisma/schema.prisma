@@ -3,7 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output = "../src/datasource/generated/client"
+  output   = "../src/datasource/generated/client"
 }
 
 datasource db {
@@ -24,12 +24,13 @@ model User {
 }
 
 model Todo {
-  id           Int      @id @default(autoincrement())
-  user         User     @relation(fields: [user_id], references: [id])
-  user_id      Int
-  name         String
-  clicked      Boolean  @default(false)
-  completed    Boolean  @default(false)
-  created_at   DateTime @default(now())
-  completed_at DateTime @updatedAt
+  id              Int      @id @default(autoincrement())
+  user            User     @relation(fields: [user_id], references: [id])
+  user_id         Int
+  name            String
+  translated_text String?
+  clicked         Boolean  @default(false)
+  completed       Boolean  @default(false)
+  created_at      DateTime @default(now())
+  completed_at    DateTime @updatedAt
 }

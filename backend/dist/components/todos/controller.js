@@ -3,8 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTodo = exports.updateTodo = exports.findTodoById = exports.findAllTodos = exports.newTodo = void 0;
+exports.translateToDo = exports.deleteTodo = exports.updateTodo = exports.findTodoById = exports.findAllTodos = exports.newTodo = void 0;
 const datasource_1 = __importDefault(require("../../datasource"));
+// Google Translation API
+const { TranslationServiceClient } = require('@google-cloud/translate');
+const translationClient = new TranslationServiceClient();
 // CREATE todo item
 const newTodo = async (req, res) => {
     try {
@@ -90,4 +93,39 @@ const deleteTodo = async (req, res) => {
     }
 };
 exports.deleteTodo = deleteTodo;
+// TRANSLATE todo by id
+const translateToDo = async (req, res) => {
+    try {
+        const todo_id = Number(req.params.idTodo);
+        const todo = await datasource_1.default.todo.findUnique({
+            where: {
+                id: todo_id,
+            },
+        });
+        const projectId = 'spring-ember-377519';
+        const location = 'global';
+        const text = todo?.name;
+        async function translateText() {
+            // Construct request
+            const request = {
+                parent: `projects/${projectId}/locations/${location}`,
+                contents: [text],
+                mimeType: 'text/plain',
+                sourceLanguageCode: 'en',
+                targetLanguageCode: 'es',
+            };
+            // Run request
+            const [response] = await translationClient.translateText(request);
+            for (const translation of response.translations) {
+                return `Translation: ${translation.translatedText}`;
+            }
+        }
+        ;
+        res.status(200).json({ body: translateText() });
+    }
+    catch (error) {
+        res.status(200).json(error);
+    }
+};
+exports.translateToDo = translateToDo;
 //# sourceMappingURL=controller.js.map

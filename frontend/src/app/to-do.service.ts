@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { map, pipe } from "rxjs";
+import { map, pipe, switchMap } from "rxjs";
 import { ToDo } from "./models/to-do";
 
 @Injectable({
@@ -20,5 +20,8 @@ export class ToDoService {
     return this.http.post<ToDo>("/api/todos/", {
       name: todo,
     });
+  }
+  translateToDo(id: number) {
+    return this.http.get<ToDo>(`/api/todos/translate/${id}`);
   }
 }
