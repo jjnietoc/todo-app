@@ -1,6 +1,6 @@
 # To Do App
 
-This is a simple app that let's you:
+This is a simple app that lets you:
 
 - **Create** an account.
 - **Add** multiple to-do items.
@@ -9,7 +9,7 @@ This is a simple app that let's you:
 
 You can also create an account as an **admin**, which enables you to see the to-dos of the non-admin users.
 
-The app is successfully deployed in Google Cloud, you can check it out [here](https://spring-ember-377519.uc.r.appspot.com/).
+The app is successfully deployed on Google Cloud, you can check it out [here](https://spring-ember-377519.uc.r.appspot.com/).
 
 ## Deployment to Google Cloud
 
@@ -21,11 +21,11 @@ If you'd like to deploy this app to gcloud yourself, the following instructions 
 git clone https://github.com/jjnietoc/todo-app.git
 ```
 
-### 2. Create an account in Google Cloud
+### 2. Create an account on Google Cloud
 
-Enter [this link](https://cloud.google.com/), and create the button "start free". It should prompt you to sign up with a Google Account. If this is your first time using Gcloud it gives you free credits so you can try the deploy for free.
+Enter [this link](https://cloud.google.com/), and click the button "start free". It should prompt you to sign up with a Google Account. If this is your first time using Google Cloud your new account comes with free credits so you can try the deployment for free.
 
-It's necessary that you give your credit card information to continue, but Google says it won't charge you once your free trial ends.
+It's necessary that you give your billing information to continue, Google says it won't charge you once your free trial ends.
 
 ### 3. The Google Cloud console
 
@@ -33,13 +33,15 @@ Once you're finished with your setup, you will be redirected to the GCloud conso
 
 ### 4. Create an App Engine
 
-In the search bar above, look for "App Engine" and click it. Once it opens, click "Create Application". Choose your area and click in App Engine Default service account, and continue. Once its created, download and install the Google Cloud SDK. Follow the instructions to initialize it and set it up in your local environment. You will need this to deploy your app later on.
+In the search bar above, look for "App Engine" and click it. Once it opens, click "Create Application". Choose your area, click on App Engine Default service account, and continue. Once its created, download and install the Google Cloud SDK. Follow the instructions to initialize it and set it up in your local environment. You will need this to deploy your app later on.
 
 ### 5. Create a Database Instance
 
 In the search bar above, look for "SQL" and click it. Once it opens, click "Create Instance". This specific project uses [PostgreSQL](https://www.postgresql.org/) and [Prisma](https://www.prisma.io/docs/concepts/overview/what-is-prisma), so we will also choose the PostgreSQL option. Click Enable API to continue. This will take a few seconds.
 
-Once it loads, fill your info. Choose a password that does not include any of your personal info. Choose the configuration that you need. I recommend using Single Zone availability if you're thinking of using this for a small project. Click on **Customize your Instance** and go to **Connections**. In there, check Public IP if its not checked and then click on Add Network. There, choose a name for the public connections, and write '0.0.0.0/0' on the Network\* field. This will allow you to connect to your db from your computer.This isn't recommended, but because this is a small project you can continue.
+Once it loads, fill in your info. Choose a password that does not include any of your personal information, and choose the configuration that you need. I recommend using Single Zone availability if you're thinking of using this as a small project. Afterwards, click on **Customize your Instance** and go to **Connections**. 
+
+In there, check Public IP if its not checked and then click on Add Network. There, choose a name for the public connections, and write '0.0.0.0/0' on the 'Network\*' field. This will allow you to connect to your db from your computer.This isn't recommended, but because this is a small project you can continue.
 
 Let the Database create itself. This could take a few minutes.
 
