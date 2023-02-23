@@ -13,8 +13,11 @@
         </mat-panel-title>
         <mat-panel-description> Show user to-dos </mat-panel-description>
       </mat-expansion-panel-header>
-      <div>
-        <app-to-do *ngFor="let todo of user.todos" [todo]="todo"></app-to-do>
+      <div *ngFor="let todo of user.todos">
+        <app-to-do *ngIf="!todo.completed" [todo]="todo"></app-to-do>
+      </div>
+      <div *ngFor="let todo of user.todos">
+        <app-to-do *ngIf="todo.completed" [todo]="todo"></app-to-do>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
