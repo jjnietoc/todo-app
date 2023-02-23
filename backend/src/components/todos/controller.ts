@@ -2,9 +2,8 @@ import type { Request, Response } from "express";
 import prisma from "../../datasource";
 import { verifyAuthentication } from "../authenticate";
 
-// Google Translation API
+// Google Translation API requirements
 const { TranslationServiceClient } = require("@google-cloud/translate");
-
 const translationClient = new TranslationServiceClient();
 
 // CREATE todo item
@@ -21,7 +20,6 @@ export const newTodo = async (req: Request, res: Response): Promise<void> => {
       message: "todo created successfully",
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ ok: false, message: error });
   }
 };
@@ -57,7 +55,6 @@ export const findTodoById = async (
     });
     res.status(200).json({ ok: true, body: todo?.name });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ ok: false, message: error });
   }
 };
@@ -129,6 +126,7 @@ export const translateToDo = async (
     // Run request
     const [response] = await translationClient.translateText(request);
     const translatedText = response.translations[0].translatedText;
+    // Modify ToDo item and return it
     todo.clicked = true;
     todo.translated_text = translatedText;
     await prisma.todo.update({

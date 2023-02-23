@@ -10,11 +10,13 @@ import { ToDoService } from "../to-do.service";
 export class ToDoListComponent implements OnInit {
   newToDo = "";
   todos?: Observable<ToDo[]>;
-  todo?:ToDo;
+  todo?: ToDo;
   constructor(private toDoService: ToDoService) {}
+  // Get all ToDos
   ngOnInit(): void {
     this.todos = this.toDoService.getToDos();
   }
+  // Add New ToDo
   addToDo(): void {
     this.toDoService.addToDo(this.newToDo).subscribe((_) => {
       this.todos = this.toDoService.getToDos();

@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/datasource/generated/client"
@@ -17,20 +14,20 @@ model User {
   name         String?   @unique
   password     String
   last_session DateTime?
-  isAdmin      Boolean   @default(false)
   update_at    DateTime  @updatedAt
   created_at   DateTime  @default(now())
+  isAdmin      Boolean   @default(false)
   todos        Todo[]
 }
 
 model Todo {
   id              Int      @id @default(autoincrement())
-  user            User     @relation(fields: [user_id], references: [id])
   user_id         Int
   name            String
-  translated_text String?
-  clicked         Boolean  @default(false)
   completed       Boolean  @default(false)
   created_at      DateTime @default(now())
   completed_at    DateTime @updatedAt
+  clicked         Boolean  @default(false)
+  translated_text String?
+  user            User     @relation(fields: [user_id], references: [id])
 }

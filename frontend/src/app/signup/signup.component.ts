@@ -13,6 +13,7 @@ export class SignupComponent {
   password = "";
   isAdmin = false;
   constructor(private authService: AuthService, private router: Router) {}
+  // Data required for signup
   signup(): void {
     this.authService
       .signup(this.name, this.email, this.password, this.isAdmin)

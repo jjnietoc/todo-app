@@ -12,16 +12,20 @@ export class ToDoComponent implements OnInit {
   @Input() todo?: ToDo;
   constructor(private toDoService: ToDoService) {}
   ngOnInit(): void {}
+  // Change status of ToDo
   markAsDone(): void {
     if (this.todo) {
-      this.toDoService.updateToDo(this.todo.id)
-      .subscribe(todo => this.todo = todo);
+      this.toDoService
+        .updateToDo(this.todo.id)
+        .subscribe((todo) => (this.todo = todo));
     }
   }
+  // Translate ToDo
   translate(): void {
     if (this.todo) {
-      this.toDoService.translateToDo(this.todo.id)
-      .subscribe(todo => this.todo = todo);
+      this.toDoService
+        .translateToDo(this.todo.id)
+        .subscribe((todo) => (this.todo = todo));
     }
   }
 }

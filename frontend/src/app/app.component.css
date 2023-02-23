@@ -1,7 +1,7 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
 
-  .content {
-    padding: 25px;
-  }
+.content {
+  padding: 25px;
+}

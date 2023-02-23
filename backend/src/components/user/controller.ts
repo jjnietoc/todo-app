@@ -61,16 +61,19 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
     };
     const user = await prisma.user.create({ data: new_user });
 
-    const token = jwt.sign({ id: user.id, email: user.email, isAdmin: user.isAdmin }, secret_key, {
-      expiresIn: 86400,
-    });
+    const token = jwt.sign(
+      { id: user.id, email: user.email, isAdmin: user.isAdmin },
+      secret_key,
+      {
+        expiresIn: 86400,
+      }
+    );
 
     res.status(201).json({
       user,
       token,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ ok: false, message: error });
   }
 };
@@ -90,9 +93,13 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       const is_valid = await bcrypt.compare(password, user.password);
 
       if (is_valid) {
-        const token = jwt.sign({ id: user.id, email: user.email, isAdmin: user.isAdmin }, secret_key, {
-          expiresIn: 86400,
-        });
+        const token = jwt.sign(
+          { id: user.id, email: user.email, isAdmin: user.isAdmin },
+          secret_key,
+          {
+            expiresIn: 86400,
+          }
+        );
         user.password = "";
         const isAdmin = user.isAdmin;
         res.status(201).json({ user, token, isAdmin });

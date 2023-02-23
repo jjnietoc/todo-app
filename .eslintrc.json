@@ -1,11 +1,28 @@
 {
-    "extends": "eslint:recommended",
+    "ecmaFeatures": {
+        "modules": true,
+        "spread": true,
+        "restParams": true
+    },
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
 
     "env": {
         "es6": true,
-        "node": true
-    }
+        "node": true,
+        "browser": true
+    },
+    "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-console": "error",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+			"warn",
+			{ "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+		],
+        "no-undef": 2
+    },
+    "plugins": ["unused-imports"]
 }

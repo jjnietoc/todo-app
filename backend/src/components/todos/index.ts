@@ -1,5 +1,12 @@
 import { Router } from "express";
-import { newTodo, findAllTodos, findTodoById, updateTodo, deleteTodo, translateToDo } from "./controller";
+import {
+  newTodo,
+  findAllTodos,
+  findTodoById,
+  updateTodo,
+  deleteTodo,
+  translateToDo,
+} from "./controller";
 import { verifyAuthentication } from "../authenticate";
 
 const todoRouter: Router = Router();

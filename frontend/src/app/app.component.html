@@ -1,10 +1,11 @@
 <mat-toolbar>
-    <span>To-do</span>
-    <span class="example-spacer"></span>
-    <button *ngIf="isLogedIn()" (click)="logout()" mat-raised-button>Logout</button>
-  </mat-toolbar>
+  <span>To-Do App</span>
+  <span class="example-spacer"></span>
+  <button *ngIf="isLogedIn()" (click)="logout()" mat-raised-button>
+    Logout
+  </button>
+</mat-toolbar>
 
 <div class="content">
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>
-
