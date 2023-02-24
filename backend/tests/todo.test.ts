@@ -91,20 +91,20 @@ describe("CREATE /to-do", () => {
 
       const data = {
         id: 1,
-        completed: true
-      }
+        completed: true,
+      };
 
       const token = jwt.sign(
         { id: user.id, email: user.email, isAdmin: user.isAdmin },
-        secret_key,
+        secret_key
       );
 
       await request(app)
-      .put('/api/todos/1')
-      .send(data)
-      .auth(user.email, user.password)
-      .set('Authorization', token)
-      .expect(200)
+        .put("/api/todos/1")
+        .send(data)
+        .auth(user.email, user.password)
+        .set("Authorization", token)
+        .expect(200);
     });
   });
 });
@@ -131,14 +131,14 @@ describe("GET /todos", () => {
       });
       const token = jwt.sign(
         { id: user.id, email: user.email, isAdmin: user.isAdmin },
-        secret_key,
+        secret_key
       );
 
       await request(app)
-      .get('/api/todos')
-      .auth(user.email, user.password)
-      .set('Authorization', token)
-      .expect(200)
+        .get("/api/todos")
+        .auth(user.email, user.password)
+        .set("Authorization", token)
+        .expect(200);
     });
   });
 });
@@ -165,14 +165,14 @@ describe("GET one todo /todos", () => {
       });
       const token = jwt.sign(
         { id: user.id, email: user.email, isAdmin: user.isAdmin },
-        secret_key,
+        secret_key
       );
 
       await request(app)
-      .get('/api/todos/1')
-      .auth(user.email, user.password)
-      .set('Authorization', token)
-      .expect(200)
+        .get("/api/todos/1")
+        .auth(user.email, user.password)
+        .set("Authorization", token)
+        .expect(200);
     });
   });
 });

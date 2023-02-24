@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { verifyAuthentication, isAdministrator } from "../authenticate";
 import {
   findAllUsers,
   getOneUser,
@@ -7,7 +8,6 @@ import {
   updateUser,
   removeUser,
 } from "./controller";
-import { verifyAuthentication, isAdministrator } from "../authenticate";
 
 const userRouter: Router = Router();
 

@@ -88,7 +88,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       },
     });
     if (!user) {
-      res.status(400).json({ ok: false, message: "Incorrect email." });
+      res.status(400).json("Something went wrong.");
     } else {
       const is_valid = await bcrypt.compare(password, user.password);
 
@@ -104,7 +104,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         const isAdmin = user.isAdmin;
         res.status(201).json({ user, token, isAdmin });
       } else {
-        res.status(400).json({ message: "Something went wrong." });
+        res.status(400).json("Something went wrong.");
       }
     }
   } catch (error) {
@@ -123,7 +123,7 @@ export const updateUser = async (
       where: { id },
       data: req.body,
     });
-    res.json({ ok: true, body: user, message: "User updated succesfully." });
+    res.json({ body: user, message: "User updated succesfully." });
   } catch (error) {
     res.status(500).json(error);
   }
