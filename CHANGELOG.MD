@@ -1,11 +1,22 @@
-## 1.1.0 (2023-02-22)
+## 1.2.0 (2023-02-23)
 
 ### Release Highlights
-**What's new?**
-* You can now translate your to-dos from English to Spanish!
-* New way of displaying to-dos in admin view.
 
 **Features**
+* Added tests configuration for backend
+* Added tests for: 
+    - Prisma ORM
+    - Checking protected routes 
+    - Creating to-dos and updating them
+    - Creating users 
+    - Check if user exists
+
+
+### 1.1.0 (2023-02-22)
+
+**Features**
+* You can now translate your to-dos from English to Spanish!
+* New way of displaying to-dos in admin view.
 * Modified code style and comments.
 * Modified eslint configuration.
 * Added Yarn to solve Google Translate bugs with NPM.
