@@ -1,5 +1,5 @@
-import app from "../../app";
-import prisma from "../../datasource";
+import app from "../src/app";
+import prisma from "../src/datasource";
 
 import { PrismaClient } from "@prisma/client";
 import { generatePrismock } from "prismock";
@@ -41,8 +41,6 @@ describe("CREATE /user", () => {
     });
   });
 });
-
-
 
 // Check if endpoint is working
 describe("GET one /user", () => {
