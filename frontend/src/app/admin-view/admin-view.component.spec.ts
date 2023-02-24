@@ -1,3 +1,4 @@
+import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { AdminViewComponent } from "./admin-view.component";
@@ -8,6 +9,7 @@ describe("AdminViewComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       declarations: [AdminViewComponent],
     }).compileComponents();
 

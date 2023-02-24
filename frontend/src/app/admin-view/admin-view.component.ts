@@ -8,13 +8,17 @@ import { UserService } from "../user.service";
   templateUrl: "./admin-view.component.html",
   styleUrls: ["./admin-view.component.css"],
 })
+
 export class AdminViewComponent {
   users?: Observable<User[]>;
+  
   constructor(private userService: UserService) {}
+
   // Get all users
   ngOnInit(): void {
     this.users = this.userService.getUsers();
   }
+
   // Set panel state
   panelOpenState = false;
 }

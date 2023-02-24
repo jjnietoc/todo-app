@@ -43,8 +43,11 @@ import { MatExpansionModule } from "@angular/material/expansion";
     MatIconModule,
     MatCheckboxModule,
     MatExpansionModule,
+    FormsModule
   ],
+
   bootstrap: [AppComponent],
+
   providers: [
     {
       multi: true,
@@ -54,4 +57,5 @@ import { MatExpansionModule } from "@angular/material/expansion";
     RoleGuardService,
   ],
 })
+
 export class AppModule {}

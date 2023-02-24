@@ -7,12 +7,15 @@ import { Router } from "@angular/router";
   templateUrl: "./signup.component.html",
   styleUrls: ["./signup.component.css"],
 })
+
 export class SignupComponent {
   name = "";
   email = "";
   password = "";
   isAdmin = false;
+  
   constructor(private authService: AuthService, private router: Router) {}
+
   // Data required for signup
   signup(): void {
     this.authService

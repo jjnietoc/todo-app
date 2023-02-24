@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule } from '@angular/material/card';
 
 import { ToDoComponent } from './to-do.component';
 
@@ -8,6 +10,11 @@ describe('ToDoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        HttpClientModule,
+        MatCardModule
+      ],
+      
       declarations: [ ToDoComponent ]
     })
     .compileComponents();

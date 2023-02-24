@@ -6,12 +6,14 @@ import { tap } from "rxjs";
 @Injectable({
   providedIn: "root",
 })
+
 export class AuthService {
   user?: User;
   token: string = "";
   constructor(private http: HttpClient) {
     this.loadUser();
   }
+
   // Login function
   login(email: string, password: string) {
     return this.http
@@ -27,6 +29,7 @@ export class AuthService {
         })
       );
   }
+
   //Sign up function
   signup(name: string, email: string, password: string, isAdmin: boolean) {
     return this.http
@@ -44,6 +47,7 @@ export class AuthService {
         })
       );
   }
+
   // Save user data in localstorage
   saveUser() {
     localStorage.setItem("user", JSON.stringify(this.user));

@@ -17,10 +17,13 @@ export class RoleGuardService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
+
+    // checks if user is admin 
     if (!this.authService.user?.isAdmin) {
       alert("Forbidden.");
       this._router.navigate(["/todos"]);
       return false;
+
     } else {
       return true;
     }
