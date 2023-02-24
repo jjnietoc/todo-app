@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  saludo = "todo-app";
+  title = "todo-app";
   constructor(private authService: AuthService, private router: Router) {
     if (this.isLogedIn()) {
       if (this.authService.user?.isAdmin) {

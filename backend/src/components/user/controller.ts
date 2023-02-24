@@ -8,7 +8,7 @@ const secret_key = process.env.SECRET_KEY || "Secret key";
 
 // GET all users
 export const findAllUsers = async (
-  req: Request,
+  _req: Request,
   res: Response
 ): Promise<void> => {
   try {
@@ -44,7 +44,7 @@ export const getOneUser = async (
   }
 };
 
-// POST signup data
+// POST signup data, CREATE new user
 export const signup = async (req: Request, res: Response): Promise<void> => {
   try {
     const data = req.body;
@@ -87,7 +87,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         email: email,
       },
     });
-    if (user == null) {
+    if (!user) {
       res.status(400).json({ ok: false, message: "Incorrect email." });
     } else {
       const is_valid = await bcrypt.compare(password, user.password);
@@ -104,11 +104,11 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         const isAdmin = user.isAdmin;
         res.status(201).json({ user, token, isAdmin });
       } else {
-        res.status(400).json({ ok: false, message: "Incorrect password." });
+        res.status(400).json({ message: "Something went wrong." });
       }
     }
   } catch (error) {
-    res.status(500).json({ ok: false, message: error });
+    res.status(500).json(error);
   }
 };
 
@@ -125,7 +125,7 @@ export const updateUser = async (
     });
     res.json({ ok: true, body: user, message: "User updated succesfully." });
   } catch (error) {
-    res.status(500).json({ ok: false, body: error });
+    res.status(500).json(error);
   }
 };
 
@@ -139,8 +139,8 @@ export const removeUser = async (
     await prisma.user.delete({
       where: { id },
     });
-    res.status(204).json({ ok: true, body: "", message: "User deleted." });
+    res.status(204).json({ body: "", message: "User deleted." });
   } catch (error) {
-    res.status(500).json({ ok: false, body: error });
+    res.status(500).json(error);
   }
 };

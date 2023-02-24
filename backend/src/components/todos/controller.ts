@@ -1,9 +1,7 @@
 import type { Request, Response } from "express";
 import prisma from "../../datasource";
-import { verifyAuthentication } from "../authenticate";
+import  { TranslationServiceClient } from "@google-cloud/translate";
 
-// Google Translation API requirements
-const { TranslationServiceClient } = require("@google-cloud/translate");
 const translationClient = new TranslationServiceClient();
 
 // CREATE todo item
@@ -15,12 +13,11 @@ export const newTodo = async (req: Request, res: Response): Promise<void> => {
     };
     const todoData = await prisma.todo.create({ data: toDo });
     res.status(201).json({
-      ok: true,
       body: todoData,
       message: "todo created successfully",
     });
   } catch (error) {
-    res.status(500).json({ ok: false, message: error });
+    res.status(500).json(error );
   }
 };
 
@@ -37,7 +34,7 @@ export const findAllTodos = async (
     });
     res.status(200).json(all_todos);
   } catch (error) {
-    res.status(500).json({ ok: false, message: error });
+    res.status(500).json(error);
   }
 };
 
@@ -53,9 +50,9 @@ export const findTodoById = async (
         id: todo_id,
       },
     });
-    res.status(200).json({ ok: true, body: todo?.name });
+    res.status(200).json({ body: todo?.name });
   } catch (error) {
-    res.status(500).json({ ok: false, message: error });
+    res.status(500).json(error);
   }
 };
 
@@ -87,12 +84,11 @@ export const deleteTodo = async (
       where: { id },
     });
     res.status(204).json({
-      ok: true,
       body: "",
       message: "To-do item deleted successfully.",
     });
   } catch (error) {
-    res.status(500).json({ ok: false, body: error });
+    res.status(500).json(error);
   }
 };
 
@@ -125,7 +121,7 @@ export const translateToDo = async (
     };
     // Run request
     const [response] = await translationClient.translateText(request);
-    const translatedText = response.translations[0].translatedText;
+    const translatedText = response.translations![0].translatedText;
     // Modify ToDo item and return it
     todo.clicked = true;
     todo.translated_text = translatedText;

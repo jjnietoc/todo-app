@@ -19,7 +19,7 @@ export const verifyAuthentication: RequestHandler = (req, res, next) => {
 };
 
 // Verify if user is administrator
-export const isAdministrator: RequestHandler = (req, res, next) => {
+export const isAdministrator: RequestHandler = (_req, res, next) => {
   if (res.locals.isAdmin) {
     next();
   } else {

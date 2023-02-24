@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Observable } from "rxjs";
 import { ToDo } from "../models/to-do";
 import { ToDoService } from "../to-do.service";
 
