@@ -1,6 +1,13 @@
-## 1.2.0 (2023-02-23)
+## 1.2.1 (2023-02-24)
 
 ### Release Highlights
+
+**Features**
+* Added tests for: 
+    - Protected routes using authorization
+
+
+### 1.2.0 (2023-02-23)
 
 **Features**
 * Added tests configuration for backend
@@ -10,8 +17,8 @@
     - Creating to-dos and updating them
     - Creating users 
     - Check if user exists
-
-
+   
+    
 ### 1.1.0 (2023-02-22)
 
 **Features**
