@@ -3,7 +3,6 @@ logs
 *.log
 npm-debug.log*
 
-
 node_modules/
 
 *.tsbuildinfo
@@ -21,9 +20,4 @@ node_modules/
 /prisma/*.db-journal
 prisma/migrations
 src/datasource/generated
-
-#Google Cloud
-app.yaml
-.gcloudignore
-
 dist/datasource/generated
