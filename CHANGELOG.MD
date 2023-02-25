@@ -1,4 +1,4 @@
-## 1.2.2 (2023-02-24)
+## 1.4.0 (2023-02-24)
 
 ### Release Highlights
 
@@ -7,7 +7,7 @@
     - Angular components
 
 
-### 1.2.1 (2023-02-24)
+### 1.3.0 (2023-02-24)
 
 **Features**
 * Added tests for: 
