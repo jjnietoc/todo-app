@@ -43,7 +43,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
     MatIconModule,
     MatCheckboxModule,
     MatExpansionModule,
-    FormsModule
+    FormsModule,
   ],
 
   bootstrap: [AppComponent],

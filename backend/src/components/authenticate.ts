@@ -1,13 +1,13 @@
 import jwt from "jsonwebtoken";
 import { RequestHandler } from "express";
 
-const secret_key = process.env.SECRET_KEY || "Secret key";
+const secretKey = process.env.SECRET_KEY || "Secret key";
 
 // Verify authentication using token
 export const verifyAuthentication: RequestHandler = (req, res, next) => {
   const userToken: string = req.headers.authorization || "";
   
-  jwt.verify(userToken, secret_key, (err, payload) => {
+  jwt.verify(userToken, secretKey, (err, payload) => {
     if (err) {
       res.status(401).json("Authentication failed.");
       next(err);
@@ -24,7 +24,7 @@ export const verifyAuthentication: RequestHandler = (req, res, next) => {
 export const isAdministrator: RequestHandler = (_req, res, next) => {
   if (res.locals.isAdmin) {
     next();
-    
+
   } else {
     res.status(403).json("Forbidden.");
     next("Forbidden.");

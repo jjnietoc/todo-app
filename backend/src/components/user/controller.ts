@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import prisma from "../../datasource";
 
-const secret_key = process.env.SECRET_KEY || "Secret key";
+const secretKey = process.env.SECRET_KEY || "Secret key";
 
 // GET all users
 export const findAllUsers = async (
@@ -19,7 +19,7 @@ export const findAllUsers = async (
     });
     res.json(users);
   } catch (error) {
-    res.status(500).json({ ok: false, message: error });
+    res.status(500).json(error);
   }
 };
 
@@ -29,41 +29,41 @@ export const getOneUser = async (
   res: Response
 ): Promise<void> => {
   try {
-    const user_id = Number(req.params.idUser);
+    const userId = Number(req.params.idUser);
     const user = await prisma.user.findUnique({
       where: {
-        id: user_id,
+        id: userId,
       },
       include: {
         todos: true,
       },
     });
-    res.json({ ok: true, body: user });
+    res.json({ body: user });
   } catch (error) {
-    res.status(500).json({ ok: false, body: error });
+    res.status(500).json(error);
   }
 };
 
 // POST signup data, CREATE new user
-export const signup = async (req: Request, res: Response): Promise<void> => {
+export const signUp = async (req: Request, res: Response): Promise<void> => {
   try {
     const data = req.body;
     data.last_session = data.last_session || null;
 
-    const encrypted_password = await bcrypt.hash(data.password, 10);
+    const encryptedPassword = await bcrypt.hash(data.password, 10);
 
-    const new_user = {
+    const newUser = {
       name: data.name,
       email: data.email,
-      password: encrypted_password,
+      password: encryptedPassword,
       isAdmin: data.isAdmin,
       last_session: new Date(data.last_session),
     };
-    const user = await prisma.user.create({ data: new_user });
+    const user = await prisma.user.create({ data: newUser });
 
     const token = jwt.sign(
       { id: user.id, email: user.email, isAdmin: user.isAdmin },
-      secret_key,
+      secretKey,
       {
         expiresIn: 86400,
       }
@@ -74,7 +74,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       token,
     });
   } catch (error) {
-    res.status(500).json({ ok: false, message: error });
+    res.status(500).json(error);
   }
 };
 
@@ -90,12 +90,12 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     if (!user) {
       res.status(400).json("Something went wrong.");
     } else {
-      const is_valid = await bcrypt.compare(password, user.password);
+      const isValid = await bcrypt.compare(password, user.password);
 
-      if (is_valid) {
+      if (isValid) {
         const token = jwt.sign(
           { id: user.id, email: user.email, isAdmin: user.isAdmin },
-          secret_key,
+          secretKey,
           {
             expiresIn: 86400,
           }

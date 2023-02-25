@@ -3,7 +3,7 @@ import { verifyAuthentication, isAdministrator } from "../authenticate";
 import {
   findAllUsers,
   getOneUser,
-  signup,
+  signUp,
   login,
   updateUser,
   removeUser,
@@ -14,7 +14,7 @@ const userRouter: Router = Router();
 userRouter.get("/", verifyAuthentication, isAdministrator, findAllUsers);
 userRouter.get("/:idUser", getOneUser);
 userRouter.put("/:idUser", updateUser);
-userRouter.post("/signup", signup);
+userRouter.post("/signup", signUp);
 userRouter.post("/login", login);
 userRouter.delete("/:idUser", removeUser);
 
